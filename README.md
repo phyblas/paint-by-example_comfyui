@@ -20,25 +20,25 @@
 
 最简单最基本的节点。要准备原本图片和遮罩和例子图片。可以指定步数的种子。
 
-![workflow1.jpg](workflow1.jpg)
+![workflow1.jpg](https://github.com/phyblas/stadif_comfyui_workflow/blob/master/paint-by-example/workflow1.jpg)
 
 当然也可以用maskeditor。
 
-![workflow2.jpg](workflow2.jpg)
+![workflow2.jpg](https://github.com/phyblas/stadif_comfyui_workflow/blob/master/paint-by-example/workflow2.jpg)
 
 也支持同时生成几张。
 
-![workflow3.jpg](workflow3.jpg)
+![workflow3.jpg](https://github.com/phyblas/stadif_comfyui_workflow/blob/master/paint-by-example/workflow3.jpg)
 
 
 ## PaintbyExampleAdvanced
 
 跟simple的用法差不多。只是多家了几个选项。例如可以写负面提示词。
 
-![workflow4.jpg](workflow4.jpg)
+![workflow4.jpg](https://github.com/phyblas/stadif_comfyui_workflow/blob/master/paint-by-example/workflow4.jpg)
 
 ## PaintbyExampleGen
 
 这个节点有点复杂。是先生成图片，再拿来做例子图片。生成需要用的输入是跟一般文生图差不多。结果可以说是像一般的inpaint的。
 
-![workflow5.jpg](workflow5.jpg)
+![workflow5.jpg](https://github.com/phyblas/stadif_comfyui_workflow/blob/master/paint-by-example/workflow5.jpg)
