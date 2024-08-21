@@ -1,0 +1,15 @@
+[project]
+name = "paint-by-example_comfyui"
+description = "Implementation of paint-by-example on ComfyUI"
+version = "1.0.0"
+license = {file = "LICENSE"}
+dependencies = ["diffusers", "torch", "torchvision"]
+
+[project.urls]
+Repository = "https://github.com/phyblas/paint-by-example_comfyui"
+#  Used by Comfy Registry https://comfyregistry.org
+
+[tool.comfy]
+PublisherId = ""
+DisplayName = "paint-by-example_comfyui"
+Icon = ""
