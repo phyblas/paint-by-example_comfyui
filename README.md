@@ -1,19 +1,20 @@
 # paint-by-example_comfyui
 
-（[english description](https://github-com.translate.goog/phyblas/paint-by-example_comfyui/blob/master/README.md?_x_tr_sl=zh-CN&_x_tr_tl=en&_x_tr_hl=zh-CN&_x_tr_pto=wapp)）
+（→ [english description](https://github-com.translate.goog/phyblas/paint-by-example_comfyui/blob/master/README.md?_x_tr_sl=zh-CN&_x_tr_tl=en&_x_tr_hl=zh-CN&_x_tr_pto=wapp)）
 
 这个包是提供用来在comfyui执行[paint by example](https://github.com/Fantasy-Studio/Paint-by-Example)的节点。
 
-这个方法跟inpaint类似的。可以把作为例子的图片插入到原本图片中所要的地方。不必须要写任何提示词。但结果也可能不太像例子的图。虽然如此有时候会导出很有意思的结果。
+这个方法是inpaint类似的。可以把作为例子的图片插入到原本图片中所要的地方。不必须要写任何提示词。但结果也可能不太像例子的图。虽然如此有时候会导出很有意思的结果。
 
-没必须要提前手动下载任何模型，但首次执行节点的时候会自动下载paint by example模型，所以要等一段时间并且会占用大于5GB的硬盘。
+没必须要提前手动下载任何模型，但首次执行节点的时候会自动从huggingface下载[paint-by-example模型](https://huggingface.co/Fantasy-Studio/Paint-by-Example)，所以要等一段时间并且会占用大于5GB的硬盘。
 
 使用这个的工作流例子可以看 https://github.com/phyblas/stadif_comfyui_workflow/tree/master/paint-by-example
 
 
 ## install
 
-把这个repo放在comfyui`ComfyUI/custom_nodes/`文件夹里的就能用了。
+把这个repo放在comfyui`ComfyUI/custom_nodes/`文件夹里的就能用了。或是也可以通过[comfyui manager](https://github.com/ltdrdata/ComfyUI-Manager)安装。
+
 
 ## node
 
