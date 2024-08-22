@@ -46,3 +46,9 @@
 这个节点有点复杂。是先生成图片，再拿来做范例图片。生成需要用的输入是跟一般文生图差不多。结果可以说是像一般的inpaint的。
 
 ![workflow5.jpg](https://github.com/phyblas/stadif_comfyui_workflow/blob/master/paint-by-example/workflow5.jpg)
+
+## BRIA
+
+也可以试试用[BRIA](https://github.com/ZHO-ZHO-ZHO/ComfyUI-BRIA_AI-RMBG)来分辨背景，再做内补来代替里面的东西。
+
+![workflow6.jpg](https://github.com/phyblas/stadif_comfyui_workflow/blob/master/paint-by-example/workflow6.jpg)
