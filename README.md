@@ -4,7 +4,7 @@
 
 这个包是提供用来在comfyui执行[paint by example](https://github.com/Fantasy-Studio/Paint-by-Example)的节点。
 
-这个方法是inpaint类似的。可以把作为例子的图片插入到原本图片中所要的地方。不必须要写任何提示词。但结果也可能不太像例子的图。虽然如此有时候会导出很有意思的结果。
+这个方法是inpaint类似的。可以把作为范例的图片插入到原本图片中所要的地方。不必须要写任何提示词。但结果也可能不太像范例的图。虽然如此有时候会导出很有意思的结果。
 
 没必须要提前手动下载任何模型，但首次执行节点的时候会自动从huggingface下载[paint-by-example模型](https://huggingface.co/Fantasy-Studio/Paint-by-Example)，所以要等一段时间并且会占用大于5GB的硬盘。
 
@@ -22,7 +22,7 @@
 
 ### PaintbyExampleSimple
 
-最简单最基本的用法。要准备原本图片和遮罩和例子图片。可以指定步数的种子。
+最简单最基本的用法。要准备原本图片和遮罩和范例图片。可以指定步数和随机种。
 
 ![workflow1.jpg](https://github.com/phyblas/stadif_comfyui_workflow/blob/master/paint-by-example/workflow1.jpg)
 
@@ -37,12 +37,12 @@
 
 ### PaintbyExampleAdvanced
 
-跟simple的用法差不多。只是多家了几个选项。例如可以写负面提示词。
+跟simple的用法差不多。只是多加了几个选项。例如可以写负面提示词，还可以调整图片大小。
 
 ![workflow4.jpg](https://github.com/phyblas/stadif_comfyui_workflow/blob/master/paint-by-example/workflow4.jpg)
 
 ### PaintbyExampleGen
 
-这个节点有点复杂。是先生成图片，再拿来做例子图片。生成需要用的输入是跟一般文生图差不多。结果可以说是像一般的inpaint的。
+这个节点有点复杂。是先生成图片，再拿来做范例图片。生成需要用的输入是跟一般文生图差不多。结果可以说是像一般的inpaint的。
 
 ![workflow5.jpg](https://github.com/phyblas/stadif_comfyui_workflow/blob/master/paint-by-example/workflow5.jpg)

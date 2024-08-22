@@ -20,7 +20,7 @@ interp_dic = {
     'bilinear': InterpMode.BILINEAR,
     'lanczos': InterpMode.LANCZOS,
     'nearest': InterpMode.NEAREST,
-    'nearest exact': InterpMode.NEAREST_EXACT,
+    'nearest-exact': InterpMode.NEAREST_EXACT,
 }
 
 scheduler_dic = {
@@ -38,42 +38,42 @@ scheduler_dic = {
 }
 
 required_simple = {
-    'image':('IMAGE',),
-    'mask':('MASK',),
-    'example':('IMAGE',),
-    'seed': ('INT:seed', {'min': 0, 'max': 0xffffffffffffffff}),
-    'steps':('INT',{'default': 30, 'min': 1}),
+    'image': ('IMAGE',),
+    'mask': ('MASK',),
+    'example': ('IMAGE',),
+    'seed': ('INT:seed',{'min': 0,'max': 0xffffffffffffffff}),
+    'steps': ('INT',{'default': 30,'min': 1}),
 }
 
 required_advanced = {
     **required_simple,
-    'cfg':('FLOAT',{'default': 5, 'min': 0, 'step': 0.1}),
+    'cfg': ('FLOAT',{'default': 5,'min': 0,'step': 0.1}),
     'sampler_name': (list(scheduler_dic),),
-    'negative':('STRING',{'multiline': True, 'default': ''}),
-    'resize': ('BOOLEAN', {'default': False}),
-    'width':('INT',{'default': 512, 'min': 8, 'step': 8}),
-    'height':('INT',{'default': 512, 'min': 8, 'step': 8}),
+    'negative': ('STRING',{'multiline': True,'default': ''}),
+    'resize': ('BOOLEAN',{'default': False}),
+    'width': ('INT',{'default': 512,'min': 8,'step': 8}),
+    'height': ('INT',{'default': 512,'min': 8,'step': 8}),
     'resize_mode': (list(interp_dic),)
 }
 
 required_gen = {
-    'image':('IMAGE',),
-    'mask':('MASK',),
-    'model':('MODEL',),
-    'seed': ('INT:seed', {'min': 0, 'max': 0xffffffffffffffff}),
-    'steps':('INT',{'default': 30, 'min': 1}),
-    'cfg':('FLOAT',{'default': 5, 'min': 0, 'step': 0.1}),
-    'sampler_name': (comfy.samplers.KSampler.SAMPLERS, ),
-    'scheduler': (comfy.samplers.KSampler.SCHEDULERS, ),
-    'positive': ('CONDITIONING', ),
-    'negative': ('CONDITIONING', ),
-    'latent_image': ('LATENT', ),
-    'vae': ('VAE', )
+    'image': ('IMAGE',),
+    'mask': ('MASK',),
+    'model': ('MODEL',),
+    'seed': ('INT:seed',{'min': 0,'max': 0xffffffffffffffff}),
+    'steps': ('INT',{'default': 30,'min': 1}),
+    'cfg': ('FLOAT',{'default': 5,'min': 0,'step': 0.1}),
+    'sampler_name': (comfy.samplers.KSampler.SAMPLERS,),
+    'scheduler': (comfy.samplers.KSampler.SCHEDULERS,),
+    'positive': ('CONDITIONING',),
+    'negative': ('CONDITIONING',),
+    'latent_image': ('LATENT',),
+    'vae': ('VAE',)
 }
 
 def callback(steps):
     pbar = comfy.utils.ProgressBar(steps)
-    def f(step: int, timestep: int, latents: torch.FloatTensor):
+    def f(step: int,timestep: int,latents: torch.FloatTensor):
         pbar.update(1)
     return f
 
@@ -157,8 +157,8 @@ class PaintbyExampleAdvanced(PaintbyExampleSimple):
                 generator=generator,
                 callback=callback(steps)
             ).images[0]
-            
             outimg[i] = totensor(pil_outimg)
+            
         outimg = outimg.permute(0,2,3,1)
         return (outimg,)
 
@@ -169,7 +169,7 @@ class PaintbyExampleGen(PaintbyExampleAdvanced):
         return {'required': required_gen}
 
     RETURN_TYPES = ('IMAGE','IMAGE')
-    RETURN_NAMES = ("image", "example",)
+    RETURN_NAMES = ('image','example')
     FUNCTION = 'inpaintgen'
     
     def inpaintgen(self,image,mask,model,seed,steps,cfg,sampler_name,scheduler,positive,negative,latent_image,vae):
