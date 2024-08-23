@@ -52,3 +52,9 @@
 也可以试试用[BRIA](https://github.com/ZHO-ZHO-ZHO/ComfyUI-BRIA_AI-RMBG)来分辨背景，再做内补来代替里面的东西。
 
 ![workflow6.jpg](https://github.com/phyblas/stadif_comfyui_workflow/blob/master/paint-by-example/workflow6.jpg)
+
+## AIGODLIKE-ComfyUI-Translation
+
+如果你在用[AIGODLIKE-ComfyUI-Translation](https://github.com/AIGODLIKE/AIGODLIKE-ComfyUI-Translation)来做汉化，我有提供了节点翻译所以会显示为中文。（需要先更新为8月23日的版本）
+
+![workflow7.jpg](https://github.com/phyblas/stadif_comfyui_workflow/blob/master/paint-by-example/workflow7.png)
