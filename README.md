@@ -1,6 +1,7 @@
 # paint-by-example_comfyui
 
 （→ [english description](https://github-com.translate.goog/phyblas/paint-by-example_comfyui/blob/master/README.md?_x_tr_sl=zh-CN&_x_tr_tl=en&_x_tr_hl=zh-CN&_x_tr_pto=wapp)）
+（→ [日本語の説明はqiitaで](https://qiita.com/phyblas/items/43446cd2c06761c37a93)）
 
 这个包是提供用来在comfyui执行[paint by example](https://github.com/Fantasy-Studio/Paint-by-Example)的节点。
 
