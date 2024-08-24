@@ -178,14 +178,74 @@ class PaintbyExampleGen(PaintbyExampleAdvanced):
         return self.inpaint(image,mask,example,seed,steps,cfg,sampler_name,negative,False,0,0,'bicubic') + (example,)
 
 
+int_req1 = ('INT',{'default': 255,'min': 0,'max': 255})
+int_req2 = ('INT',{'default': 192,'min': 0,'max': 255})
+int_req3 = ('INT',{'default': 16,'min': 1,'max': 1024})
+
+class PaintbySingleColor:
+    @classmethod
+    def INPUT_TYPES(s):
+        req = {
+            'image': ('IMAGE',),
+            'mask': ('MASK',),
+            'red': int_req1,
+            'green': int_req1,
+            'blue': int_req1,
+        }
+        return {'required': req}
+    
+    RETURN_TYPES = ('IMAGE',)
+    FUNCTION = 'inpaint'
+    CATEGORY = 'inpaint'
+    
+    def fill(self,image,mask,imgfill):
+        if(mask.shape[1:]!=image.shape[1:3]):
+            resize_f = torchvision.transforms.Resize(size=image.shape[1:3],interpolation=InterpMode.BILINEAR)
+            mask = resize_f(mask)
+        outimg = image*(1-mask[:,:,:,None]) + imgfill*mask[:,:,:,None]
+        return outimg
+    
+    def inpaint(self,image,mask,red,green,blue):
+        imgfill = torch.clip(torch.FloatTensor([red,green,blue]).tile([*image.shape[:3],1])/255,0,1)
+        return (self.fill(image,mask,imgfill),)
+
+
+class PaintbyIchimatsu(PaintbySingleColor):
+    @classmethod
+    def INPUT_TYPES(s):
+        req = {
+            'image': ('IMAGE',),
+            'mask': ('MASK',),
+            'red1': int_req1,
+            'green1': int_req1,
+            'blue1': int_req1,
+            'red2': int_req2,
+            'green2': int_req2,
+            'blue2': int_req2,
+            'size_x': int_req3,
+            'size_y': int_req3,
+        }
+        return {'required': req}
+    
+    def inpaint(self,image,mask,red1,green1,blue1,red2,green2,blue2,size_x,size_y):
+        mx,my = torch.meshgrid(torch.arange(image.shape[2]),torch.arange(image.shape[1]))
+        mz = ((mx%(size_x*2)<size_x) != (my%(size_y*2)<size_y))[:,:,None]
+        imgfill = (mz*torch.Tensor([red1,green1,blue1]) + ~mz*torch.Tensor([red2,green2,blue2]))/255
+        return (self.fill(image,mask,imgfill),)
+
+
 
 NODE_CLASS_MAPPINGS = {
     'PaintbyExampleSimple': PaintbyExampleSimple,
     'PaintbyExampleAdvanced': PaintbyExampleAdvanced,
-    'PaintbyExampleGen': PaintbyExampleGen
+    'PaintbyExampleGen': PaintbyExampleGen,
+    'PaintbySingleColor': PaintbySingleColor,
+    'PaintbyIchimatsu': PaintbyIchimatsu,
 }
 NODE_DISPLAY_NAME_MAPPINGS = {
     'PaintbyExampleSimple': 'Paint by Example (simple)',
     'PaintbyExampleAdvanced': 'Paint by Example (advanced)',
-    'PaintbyExampleGen': 'Paint by Generated Example'
+    'PaintbyExampleGen': 'Paint by Generated Example',
+    'PaintbySingleColor': 'Paint by Single Color',
+    'PaintbyIchimatsu': 'Paint by Ichimatsu',
 }
