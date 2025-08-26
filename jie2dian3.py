@@ -41,7 +41,7 @@ required_simple = {
     'image': ('IMAGE',),
     'mask': ('MASK',),
     'example': ('IMAGE',),
-    'seed': ('INT:seed',{'min': 0,'max': 0xffffffffffffffff}),
+    'seed': ('INT',{'default': 0, 'min': 0,'max': 0xffffffffffffffff}),
     'steps': ('INT',{'default': 30,'min': 1}),
 }
 
@@ -60,7 +60,7 @@ required_gen = {
     'image': ('IMAGE',),
     'mask': ('MASK',),
     'model': ('MODEL',),
-    'seed': ('INT:seed',{'min': 0,'max': 0xffffffffffffffff}),
+    'seed': ('INT',{'default': 0, 'min': 0,'max': 0xffffffffffffffff}),
     'steps': ('INT',{'default': 30,'min': 1}),
     'cfg': ('FLOAT',{'default': 5,'min': 0,'step': 0.1}),
     'sampler_name': (comfy.samplers.KSampler.SAMPLERS,),
