@@ -1,55 +1,53 @@
 # paint-by-example_comfyui
 
-（→ [english description](https://github-com.translate.goog/phyblas/paint-by-example_comfyui/blob/master/README.md?_x_tr_sl=zh-CN&_x_tr_tl=en&_x_tr_hl=zh-CN&_x_tr_pto=wapp)）
-（→ [日本語の説明はqiitaで](https://qiita.com/phyblas/items/43446cd2c06761c37a93)）
+（→ [English Description](https://github-com.translate.goog/phyblas/paint-by-example_comfyui/blob/master/README.md?_x_tr_sl=zh-CN&_x_tr_tl=en&_x_tr_hl=zh-CN&_x_tr_pto=wapp)）
+（→ [日本語説明はQiitaで](https://qiita.com/phyblas/items/43446cd2c06761c37a93)）
 
-这个包是提供用来在comfyui执行[paint by example](https://github.com/Fantasy-Studio/Paint-by-Example)的节点。
+这个包提供了在 ComfyUI 中运行 [Paint by Example](https://github.com/Fantasy-Studio/Paint-by-Example) 功能的节点。
 
-这个方法是inpaint类似的。可以把作为范例的图片插入到原本图片中所要的地方。不必须要写任何提示词。但结果也可能不太像范例的图。虽然如此有时候会导出很有意思的结果。
+该方法类似于图像修复（inpaint），可以将示例图片插入到原图的指定区域中。无需编写任何提示词，但生成的结果可能不会与示例图片完全相似。尽管如此，有时仍能产生非常有趣的效果。
 
-没必须要提前手动下载任何模型，但首次执行节点的时候会自动从huggingface下载[paint-by-example模型](https://huggingface.co/Fantasy-Studio/Paint-by-Example)，所以要等一段时间并且会占用大于5GB的硬盘。
+无需提前手动下载任何模型，但在首次运行节点时，系统会自动从 Hugging Face 下载 [Paint-by-Example 模型](https://huggingface.co/Fantasy-Studio/Paint-by-Example)，因此需要等待一段时间，并且会占用超过 5GB 的硬盘空间。
 
-使用这个的工作流例子可以看 https://github.com/phyblas/ironna_comfyui_workflow/tree/master/stable_diffusion/paint-by-example
+使用示例工作流可参考：  
+https://github.com/phyblas/ironna_comfyui_workflow/tree/master/stable_diffusion/paint-by-example
 
+## 安装
 
-## install
+将此仓库放置在 ComfyUI 的 `ComfyUI/custom_nodes/` 文件夹中即可使用。也可以通过 [ComfyUI Manager](https://github.com/ltdrdata/ComfyUI-Manager) 进行安装。
 
-把这个repo放在comfyui`ComfyUI/custom_nodes/`文件夹里的就能用了。或是也可以通过[comfyui manager](https://github.com/ltdrdata/ComfyUI-Manager)安装。
+## 节点
 
-
-## node
-
-这个包提供了3个节点。
+这个包提供了 3 个节点。
 
 ### PaintbyExampleSimple
 
-最简单最基本的用法。要准备原本图片和遮罩和范例图片。可以指定步数和随机种。
+最简单基础的用法。需要准备原图、遮罩图和示例图片。可以指定步数和随机种子。
 
 ![workflow1.jpg](https://github.com/phyblas/ironna_comfyui_workflow/blob/master/stable_diffusion/paint-by-example/workflow1.jpg)
 
-当然也可以用maskeditor。
+当然也支持使用遮罩编辑器（mask editor）。
 
 ![workflow2.jpg](https://github.com/phyblas/ironna_comfyui_workflow/blob/master/stable_diffusion/paint-by-example/workflow2.jpg)
 
-也支持同时生成几张。
+还支持批量生成多张图片。
 
 ![workflow3.jpg](https://github.com/phyblas/ironna_comfyui_workflow/blob/master/stable_diffusion/paint-by-example/workflow3.jpg)
 
-
 ### PaintbyExampleAdvanced
 
-跟simple的用法差不多。只是多加了几个选项。例如可以写负面提示词，还可以调整图片大小。
+用法与 Simple 版本类似，但提供了更多选项，例如可以添加负面提示词，并支持调整图片尺寸。
 
 ![workflow4.jpg](https://github.com/phyblas/ironna_comfyui_workflow/blob/master/stable_diffusion/paint-by-example/workflow4.jpg)
 
 ### PaintbyExampleGen
 
-这个节点有点复杂。是先生成图片，再拿来做范例图片。生成需要用的输入是跟一般文生图差不多。结果可以说是像一般的inpaint的。
+这个节点较为复杂，会先生成一张图片，再将其作为示例图片使用。其输入方式与一般的文生图类似，最终效果可类比于常规的图像修复（inpaint）。
 
 ![workflow5.jpg](https://github.com/phyblas/ironna_comfyui_workflow/blob/master/stable_diffusion/paint-by-example/workflow5.jpg)
 
 ## BRIA
 
-也可以试试用[BRIA](https://github.com/ZHO-ZHO-ZHO/ComfyUI-BRIA_AI-RMBG)来分辨背景，再做内补来代替里面的东西。
+也可以尝试使用 [BRIA](https://github.com/ZHO-ZHO-ZHO/ComfyUI-BRIA_AI-RMBG) 区隔背景，再进行图像修复以替换其中的内容。
 
 ![workflow6.jpg](https://github.com/phyblas/ironna_comfyui_workflow/blob/master/stable_diffusion/paint-by-example/workflow6.jpg)
