@@ -80,11 +80,15 @@ def callback(steps):
 
 
 class PaintbyExampleSimple:
-    def __init__(self):            
-        self.pipe = PaintByExamplePipeline.from_pretrained(
-            'Fantasy-Studio/Paint-by-Example',
-            torch_dtype=torch.float16,
-        ).to(device)
+    def __init__(self):
+        try:
+            self.pipe = PaintByExamplePipeline.from_pretrained(
+                'Fantasy-Studio/Paint-by-Example',
+                torch_dtype=torch.float16,
+            ).to(device)
+        except AttributeError:
+            import traceback
+            raise Exception('%s\nPaint-by-Example is no longer supported in the latest version of transformers. If you want to use it, please install the older version by running `pip install transformers==4.40.0`'%(traceback.format_exc()))
         
     @classmethod
     def INPUT_TYPES(s):
@@ -228,7 +232,7 @@ class PaintbyIchimatsu(PaintbySingleColor):
         return {'required': req}
     
     def inpaint(self,image,mask,red1,green1,blue1,red2,green2,blue2,size_x,size_y):
-        mx,my = torch.meshgrid(torch.arange(image.shape[2]),torch.arange(image.shape[1]))
+        mx,my = torch.meshgrid(torch.arange(image.shape[2]),torch.arange(image.shape[1]),indexing='xy')
         mz = ((mx%(size_x*2)<size_x) != (my%(size_y*2)<size_y))[:,:,None]
         imgfill = (mz*torch.Tensor([red1,green1,blue1]) + ~mz*torch.Tensor([red2,green2,blue2]))/255
         return (self.fill(image,mask,imgfill),)
